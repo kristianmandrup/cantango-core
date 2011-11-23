@@ -1,6 +1,77 @@
 # CanTango Core
 
-The *core* functionality of CanTango.
+CanTango is an advanced Access Control (permissions) system for Rails 3. It:
+
+* extends "CanCan":http://github.com/ryanb/cancan and offers a more role oriented design
+* integrates with _role_ and _authentication_ systems in a non-intrusive manner
+* can _cache_ ability rules between requests for increased performance
+* can _store_ abilites in a permission store, including a YAML file, for easy administration
+* works well with multiple user accounts and sub applications
+* supports multiple "Devise":https://github.com/plataformatec/devise users
+
+*Will CanTango meet my Access Control (permission) requirements?*
+
+* "CanCan vs CanTango":https://github.com/kristianmandrup/cantango/wiki/CanCan-vs-CanTango
+* "CanTango overview":https://github.com/kristianmandrup/cantango/wiki
+
+## Installation
+
+CanTango has been tested to work with _Ruby 1.9+_ and currently doesn't support _Ruby 1.8.7_
+If you require ruby 1.8.7 support, please help patch it and make a pull request ;)
+
+### Install in Ruby environment (or gem set)
+
+`gem install cantango`
+
+## Install in Rails application
+
+Insert into Gemfile of your Rails application:
+
+`gem 'cantango'`
+
+If you want to live on the edge and use the latest master branch, use the `:git` option. To designate a specific branch, use the `:branch` option. You can also clone this project and reference your local copy (easier to debug/fix) by using the `:path` option (see *Bundler* documentation).
+
+Run bundler in a terminal/console from the folder of your Gemfile (root folder of the app)
+
+`$ bundle`
+
+## CanTango components
+
+CanTango has now been split up into these logical components:
+
+* [Cantango config](https://github.com/kristianmandrup/cantango-config)
+* [Cantango cache](https://github.com/kristianmandrup/cantango-cache)
+* [Cantango model](https://github.com/kristianmandrup/cantango-model)
+* [Cantango masquerade](https://github.com/kristianmandrup/cantango-masquerade)
+
+* [Cantango Permits](https://github.com/kristianmandrup/cantango-permits)
+* [Permit store](https://github.com/kristianmandrup/cantango-permit_store)
+* [Permissions](https://github.com/kristianmandrup/cantango-permissions)
+
+## Quickstart
+
+See the [Quickstart guide](https://github.com/kristianmandrup/cantango/wiki/Quickstart) in the wiki.
+
+For [devise](https://github.com/plataformatec/devise) integration, see [Quickstart CanTango with Devise](https://github.com/kristianmandrup/cantango/wiki/Quickstart-cantango-with-devise)
+
+The following scenarios demonstrate some of the problems CanTango can help solve in an elegant way
+
+* [Simple scenario](https://github.com/kristianmandrup/cantango/wiki/Simple-scenario)
+* [Complex scenario](https://github.com/kristianmandrup/cantango/wiki/Complex-scenario)
+
+### Generators
+
+Cantango comes with a set of [Generators](https://github.com/kristianmandrup/cantango/wiki/Generators) to get your app dancing...
+
+Install CanTango using
+
+* cantango:install
+
+`$ rails g cantango:install`
+
+### Configuration
+
+The CanTango [Configuration](https://github.com/kristianmandrup/cantango/wiki/Configuration) consists of a nice nested configuration DSL.
 
 ## Contributing to cantango-core
  

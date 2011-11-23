@@ -15,31 +15,30 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "cantango-core"
-  gem.homepage = "http://github.com/kristianmandrup/cantango-core"
+  gem.homepage = "http://github.com/kristianmandrup/cantango"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "kmandrup@gmail.com"
-  gem.authors = ["Kristian Mandrup"]
+  gem.summary = %Q{CanCan extension with role oriented permission management and more}
+  gem.description = %Q{Define your permission rules as role- or role group specific permits.
+Integrates well with multiple Devise user acounts.
+Includes rules caching.
+Store permissions in yaml file or key-value store}
+  gem.email = "kmandrup@gmail.com, s.pankevich@gmail.com"
+  gem.authors = ["Kristian Mandrup", "Stanislaw Pankevich"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
 
-require 'rspec/core'
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = FileList['spec/**/*_spec.rb']
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
 end
 
-RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
-end
+task :default => :test
 
-task :default => :spec
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
