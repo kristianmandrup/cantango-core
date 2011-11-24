@@ -19,7 +19,7 @@ class User
   include_and_extend SimpleRoles
 end
 
-class AdminRolePermit < CanTango::RolePermit
+class AdminRolePermit < CanTango::Permit::Role
   def initialize ability
     super
   end
@@ -38,7 +38,7 @@ class AdminRolePermit < CanTango::RolePermit
   end
 end
 
-describe CanTango::Permits::Executor do
+describe CanTango::Ability::Executor::Modes do
   context 'non-cached only' do
     before do
       CanTango.configure.ability.mode = :no_cache
