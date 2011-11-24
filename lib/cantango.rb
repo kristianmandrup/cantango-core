@@ -13,10 +13,7 @@ AutoLoader.namespaces = {:CanTango => 'cantango'}
 
 module CanTango
   autoload_modules :Ability
-  autoload_modules :Api
   autoload_modules :Engine
-
-  autoload_modules :UserApi, :AccountApi
   autoload_modules :Rules, :Helpers, :Filter, :Model, :Scope, :YamlLoader
   autoload_modules :Rails, :Macros
 
