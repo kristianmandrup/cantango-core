@@ -1,6 +1,6 @@
 module CanTango
-  module Filters
-    class Filter
+  module Filter
+    class Base
       attr_reader :item, :include_list
 
       def initialize item, list = nil

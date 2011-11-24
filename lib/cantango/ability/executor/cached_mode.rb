@@ -1,7 +1,7 @@
 module CanTango
   class Ability
     module Executor
-      class Cached < Base
+      class CachedMode < Base
         include CanTango::Ability::CacheHelpers
 
         # FIX! no reason for double cache check!

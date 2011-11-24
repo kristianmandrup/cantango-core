@@ -1,5 +1,5 @@
 module CanTango
   module Filter
-    autoload_modules :Base, :Role, :RoleGroup
+    autoload_modules :Base
   end
 end

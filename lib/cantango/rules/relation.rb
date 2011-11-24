@@ -2,7 +2,7 @@ require 'active_support/inflector'
 
 module CanTango
   module Rules
-    class UserRelation
+    class Relation
       attr_reader :attribute, :permit, :scope, :models
 
       include CanTango::Rules::Adaptor

@@ -8,7 +8,7 @@ group :default do
   gem 'hashie'
   
   # gem 'cantango-config',  :git => 'git://github.com/kristianmandrup/cantango-config.git'
-  # gem 'cantango-api',     :git => 'git://github.com/kristianmandrup/cantango-api.git'
+gem 'cantango-api',     :git => 'git://github.com/kristianmandrup/cantango-api.git'
 end
 
 group :test do

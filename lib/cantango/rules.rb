@@ -1,6 +1,6 @@
 module CanTango
   module Rules
-    autoload_modules :Adaptor, :Dsl, :RuleClass, :Scope, :UserRelation
+    autoload_modules :Adaptor, :Dsl, :RuleClass, :Scope, :Relation
 
     include Dsl
     include CanCan::Ability
