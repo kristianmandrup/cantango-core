@@ -1,11 +1,11 @@
 module CanTango
   module Macros
-    autoload_modules :User, :UserAccount
+    autoload_modules :User, :Account
   end
 end
 
-module Module
-  [:User, :UserAccount].each do |macro|
+class Module
+  [:User, :Account].each do |macro|
     self.send :include, "CanTango::Macros::#{macro.to_s.camelize}".constantize
   end
 end

@@ -5,13 +5,14 @@ group :default do
   gem 'cancan',           '>= 1.4'
   gem 'sugar-high',       '>= 0.6.0'
   gem 'sweetloader',      '~> 0.1.0'
+  gem 'hashie'
 end
 
 group :test do
   gem 'require_all', '~> 1.2.0'
 
   # Data
-  gem 'database_cleaner', :git => "git://github.com/kristianmandrup/database_cleaner.git"
+  gem 'database_cleaner'
   gem 'factory_girl'
 
   # Specs
