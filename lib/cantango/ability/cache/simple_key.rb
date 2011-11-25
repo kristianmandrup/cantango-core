@@ -1,7 +1,7 @@
 module CanTango
   module Ability
     module Cache
-      class Key
+      class SimpleKey
         attr_reader :user, :subject
 
         def initialize user, subject = nil
