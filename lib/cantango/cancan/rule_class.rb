@@ -1,5 +1,5 @@
 module CanTango
-  module Rules
+  module CanCan
     module RuleClass
       # CanCan 1.5 compatibility
       def rule_class
