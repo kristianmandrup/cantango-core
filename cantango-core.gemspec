@@ -4,17 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{cantango-core}
+  s.name = "cantango-core"
   s.version = "1.0.0.beta1"
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Kristian Mandrup}, %q{Stanislaw Pankevich}]
-  s.date = %q{2011-11-24}
-  s.description = %q{Define your permission rules as role- or role group specific permits.
-Integrates well with multiple Devise user acounts.
-Includes rules caching.
-Store permissions in yaml file or key-value store}
-  s.email = %q{kmandrup@gmail.com, s.pankevich@gmail.com}
+  s.authors = ["Kristian Mandrup", "Stanislaw Pankevich"]
+  s.date = "2011-11-25"
+  s.description = "Define your permission rules as role- or role group specific permits.\nIntegrates well with multiple Devise user acounts.\nIncludes rules caching.\nStore permissions in yaml file or key-value store"
+  s.email = "kmandrup@gmail.com, s.pankevich@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.mdown"
@@ -36,9 +33,9 @@ Store permissions in yaml file or key-value store}
     "lib/cantango/ability/cached.rb",
     "lib/cantango/ability/executor.rb",
     "lib/cantango/ability/executor/base.rb",
-    "lib/cantango/ability/executor/cached.rb",
+    "lib/cantango/ability/executor/cache_mode.rb",
     "lib/cantango/ability/executor/modes.rb",
-    "lib/cantango/ability/executor/non_cached.rb",
+    "lib/cantango/ability/executor/no_cache_mode.rb",
     "lib/cantango/ability/helper.rb",
     "lib/cantango/ability/helper/account.rb",
     "lib/cantango/ability/helper/engine.rb",
@@ -50,12 +47,8 @@ Store permissions in yaml file or key-value store}
     "lib/cantango/engine.rb",
     "lib/cantango/filter.rb",
     "lib/cantango/filter/base.rb",
-    "lib/cantango/filter/role.rb",
-    "lib/cantango/filter/role_group.rb",
     "lib/cantango/helpers.rb",
     "lib/cantango/helpers/debug.rb",
-    "lib/cantango/helpers/role.rb",
-    "lib/cantango/helpers/role_group.rb",
     "lib/cantango/loader.rb",
     "lib/cantango/loader/yaml.rb",
     "lib/cantango/macros.rb",
@@ -84,23 +77,51 @@ Store permissions in yaml file or key-value store}
     "lib/cantango/rules/adaptor/mongoid.rb",
     "lib/cantango/rules/adaptor/relational.rb",
     "lib/cantango/rules/dsl.rb",
+    "lib/cantango/rules/relation.rb",
     "lib/cantango/rules/rule_class.rb",
     "lib/cantango/rules/scope.rb",
-    "lib/cantango/rules/user_relation.rb",
     "lib/cantango/scope.rb",
     "lib/cantango/scope/ability.rb",
     "lib/generators/cantango/install/install_generator.rb",
     "lib/generators/cantango/install/templates/cantango.rb",
     "lib/generators/cantango/install/templates/categories.yml",
     "lib/generators/cantango/install/templates/permissions.yml",
-    "spec/cantango-core_spec.rb",
+    "spec/cantango/ability/base_spec.rb",
+    "spec/cantango/ability/cached_spec.rb",
+    "spec/cantango/ability/executor/base2.rb",
+    "spec/cantango/ability/executor/base_spec.rb",
+    "spec/cantango/ability/executor/cache_mode_spec.rb",
+    "spec/cantango/ability/executor/modes_spec.rb",
+    "spec/cantango/ability/executor/no_cache_mode_spec.rb",
+    "spec/cantango/cancan/rule_spec.rb",
+    "spec/cantango/core_spec.rb",
+    "spec/cantango/engine_spec.rb",
+    "spec/cantango/filter/base_spec.rb",
+    "spec/cantango/helpers/debug_spec.rb",
+    "spec/cantango/loader/yaml_spec.rb",
+    "spec/cantango/macros/account_spec.rb",
+    "spec/cantango/macros/user_spec.rb",
+    "spec/cantango/rspec/be_allowed_to_spec.rb",
+    "spec/cantango/rules/adaptor/active_record_spec.rb",
+    "spec/cantango/rules/adaptor/data_mapper_spec.rb",
+    "spec/cantango/rules/adaptor/mongo_mapper_spec.rb",
+    "spec/cantango/rules/adaptor/mongoid_spec.rb",
+    "spec/cantango/rules/adaptor_spec.rb",
+    "spec/cantango/rules/dsl_spec.rb",
+    "spec/cantango/rules/relation_spec.rb",
+    "spec/cantango/rules/rule_class_spec.rb",
+    "spec/cantango/rules/scope_spec.rb",
+    "spec/cantango/rules_spec.rb",
+    "spec/cantango/scope/ability_spec.rb",
+    "spec/cantango_spec.rb",
+    "spec/generators/cantango/install_generator_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/kristianmandrup/cantango}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.6}
-  s.summary = %q{CanCan extension with role oriented permission management and more}
+  s.homepage = "http://github.com/kristianmandrup/cantango"
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.10"
+  s.summary = "CanCan extension with role oriented permission management and more"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
