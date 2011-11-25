@@ -20,7 +20,7 @@ AutoLoader.namespaces = {:CanTango => 'cantango'}
 module CanTango
   autoload_modules :Ability, :Engine, :Filter
   autoload_modules :Helpers, :Loader, :Macros, :Model
-  autoload_modules :Rails, :Rules, :Scope
+  autoload_modules :Rules, :Scope
 
   class << self
     def configure &block
