@@ -5,10 +5,7 @@ group :default do
   gem 'cancan',           '>= 1.4'
   gem 'sugar-high',       '>= 0.6.0'
   gem 'sweetloader',      '~> 0.1.0'
-  gem 'hashie'
-  
-  # gem 'cantango-config',  :git => 'git://github.com/kristianmandrup/cantango-config.git'
-gem 'cantango-api',     :git => 'git://github.com/kristianmandrup/cantango-api.git'
+  gem 'hashie'  
 end
 
 group :test do
