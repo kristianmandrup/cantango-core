@@ -5,12 +5,14 @@ module CanTango
     module Guest
       def self.included(base)
         base.extend  ::ActiveModel::Naming
+        base.extend  ::ActiveModel::Callbacks
+
         base.send :include, ::ActiveModel::Conversion
         base.send :include, ::ActiveModel::Validations
       end
 
       def email
-        'guest@info.com'
+        'guest@example.com'
       end
 
       def has_role? role
