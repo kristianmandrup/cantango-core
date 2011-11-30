@@ -31,20 +31,20 @@ module CanTango
           rules.compact!
         end
 
-        def get_ability mode
-          ability_class_for(mode).new candidate, options
+        def ability_mode_executor_for mode
+          ability_mode_executor_class_for(mode).new candidate, options
         end
 
-        def ability_class_for mode
-          mode == :cache ? CanTango::Ability::Cached : CanTango::Ability::NonCached
+        def ability_mode_executor_class_for mode
+          "CanTango::Ability::Executor::#{mode.to_s.camelize}Mode".constantize
         end
 
         def mode? mode
           modes.include?(mode)
         end
-
+        
         def modes
-          CanTango.config.ability.modes
+          @modes ||= options[:modes] || []
         end
       end
     end

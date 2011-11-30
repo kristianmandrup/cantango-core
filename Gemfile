@@ -15,6 +15,12 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl'
 
+  # Adapters
+  gem 'activerecord', '>= 3'
+  gem 'datamapper', '>= 1.1'
+  gem 'mongoid', '>= 2.2'
+  gem 'mongo_mapper', '>= 0.9'
+
   # Specs
   gem 'spork'
   gem 'capybara'

@@ -5,11 +5,7 @@ module CanTango
         protected
 
         def start_execute
-          debug "Executing non-cached Ability"
-        end
-
-        def end_execute
-          debug "DONE"
+          debug "Executing Ability in :no_cache mode"
         end
       end
     end

@@ -12,9 +12,7 @@ end
 describe CanTango::Ability::Executor::NoCacheMode do
   context 'no_cached mode only' do
     before do
-      CanTango.configure.ability.mode = :cache
-
-      @user = User.new 'admin', 'admin@mail.ru', :role => 'admin'
+      @user = User.new 'admin', 'admin@mail.ru'
       @ability = CanTango::Ability::Base.new @user
     end
 

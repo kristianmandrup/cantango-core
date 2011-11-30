@@ -1,7 +1,7 @@
 module CanTango::Adaptor
   module Relational
-    def attribute_condition attribute, user_scope
-      { attribute.to_sym => user_scope.send(attribute) }
+    def attribute_condition attribute, candidate
+      { attribute.to_sym => candidate.send(attribute) }
     end
     alias_method :include_condition, :attribute_condition
   end
