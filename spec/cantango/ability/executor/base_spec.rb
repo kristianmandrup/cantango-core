@@ -1,11 +1,5 @@
-require 'rspec'
-require 'cantango'
+require 'spec_helper'
 require 'fixtures/models'
-require 'cantango/rspec'
-
-def config_folder
-  File.dirname(__FILE__)+ "/../fixtures/config/"
-end
 
 CanTango.configure do |config|
   config.clear!
@@ -13,7 +7,7 @@ CanTango.configure do |config|
 end
 
 class MyExecutor
-  include CanTango::Ability::Executor
+  include CanTango::Ability::Executor::Base
 
   attr_reader :ability
 
@@ -34,15 +28,15 @@ class MyExecutor
   end
 end
 
-module CanTango
-  class Ability
+module CanTango::Ability
+  class Base
     def permit_rules
       can :edit, Project
     end
   end
 end
 
-describe CanTango::Ability::Executor do
+describe CanTango::Ability::Executor::Base do
   context 'no-cache' do
     let (:ability) do
       CanTango::Ability.new @user

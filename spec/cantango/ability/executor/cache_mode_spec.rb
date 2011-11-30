@@ -1,12 +1,5 @@
-require 'rspec'
-require 'cantango'
-# require 'simple_roles'
+require 'spec_helper'
 require 'fixtures/models'
-require 'cantango/rspec'
-
-def config_folder
-  File.dirname(__FILE__)+ "/../fixtures/config/"
-end
 
 CanTango.configure do |config|
   config.clear!
@@ -19,27 +12,8 @@ class User
   include_and_extend SimpleRoles
 end
 
-class AdminRolePermit < CanTango::Permit::Role
-  def initialize ability
-    super
-  end
-
-  protected
-
-  def static_rules
-    can :read, Article
-  end
-
-  module Cached
-    def permit_rules
-      can :edit, Article
-      can :delete, Article
-    end
-  end
-end
-
-module CanTango
-  class CachedAbility
+module CanTango::Ability::Executor
+  class CacheMode
     def permit_rules
       can :read, Post
     end

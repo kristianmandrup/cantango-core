@@ -1,48 +1,12 @@
-require 'rspec'
-require 'cantango'
+require 'spec_helper'
 require 'fixtures/models'
-require 'cantango/rspec'
-
-def config_folder
-  File.dirname(__FILE__)+ "/../fixtures/config/"
-end
 
 CanTango.configure do |config|
   config.clear!
-  # config.permissions.set :on
-  config.engines.all :on
-
-  config.permission_engine.config_path = config_folder
-  config.categories.register :blog_items => [Article, Post]
+  config.engines.all :off
 end
 
-class PublishersRoleGroupPermit < CanTango::RoleGroupPermit
-  def initialize ability
-    super
-  end
-
-  protected
-
-  def static_rules
-    can :write, category(:blog_items)
-    cannot :write, Post
-  end
-end
-
-class EditorRolePermit < CanTango::RolePermit
-  def initialize ability
-    super
-  end
-
-  protected
-
-  def static_rules
-    can :read, Comment
-  end
-end
-
-
-describe CanTango::Ability do
+describe CanTango::Ability::Base do
   let (:user) do
     User.new 'krisy', 'krisy@gmail.com'
   end

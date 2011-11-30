@@ -1,7 +1,7 @@
 module CanTango
   module Ability
     module Executor
-      class NonCachedMode < Base
+      class NoCacheMode < Base
         protected
 
         def start_execute
