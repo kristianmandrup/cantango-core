@@ -1,61 +1,27 @@
 require 'spec_helper'
 require 'fixtures/models'
 
-CanTango.configure do |config|
-  config.clear!
-  config.ability.mode = :no_cache
-end
-
-class MyExecutor
-  include CanTango::Ability::Executor::Base
-
-  attr_reader :ability
-
-  def initialize ability
-    @ability = ability
-  end
-
-  def valid?
-    true
-  end
-
-  def cache_key
-    :my_exec
-  end
-
-  def permit_rules
-    ability.permit_rules
-  end
-end
-
 module CanTango::Ability
   class Base
     def permit_rules
-      can :edit, Project
+      can :read, Post
     end
   end
 end
 
 describe CanTango::Ability::Executor::Base do
-  context 'no-cache' do
-    let (:ability) do
-      CanTango::Ability.new @user
-    end
-
+  context 'non-cached only' do
     before do
-      @user = User.new 'kris'
+      @user = User.new 'admin', 'admin@mail.ru'
     end
 
-    subject { MyExecutor.new ability }
+    subject { CanTango::Ability::Executor::Base.new @user }
 
-    describe '#execute!' do
-      before do
-        subject.execute!
-      end
+    its(:non_cached_rules)  { should_not be_empty }
 
-      specify { subject.ability.send(:rules).should_not be_empty }
+    describe 'rules contain only non-cached rules' do
+      specify { subject.rules.size.should == @abil.non_cached_rules.size }
+      specify { subject.rules.size.should == 1 }
     end
   end
 end
-
-

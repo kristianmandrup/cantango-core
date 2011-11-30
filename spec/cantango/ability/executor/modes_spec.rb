@@ -32,28 +32,20 @@ end
 describe CanTango::Ability::Executor::Modes do
   context 'non-cached only' do
     before do
-      CanTango.configure.ability.mode = :no_cache
-
       @user = User.new 'admin', 'admin@mail.ru', :role => 'admin'
-      @abil = CanTango::AbilityExecutor.new @user
+      @no_cache_executor = CanTango::Ability::Executor::NoCacheMode.new @user
+      @modes_executor = CanTango::Ability::Executor::Modes.new @user
     end
 
-    subject { CanTango::AbilityExecutor.new @user }
-
-    describe 'config no_cache' do
-      specify { CanTango.configure.ability.modes.should == [:no_cache] }
+    subject do
+      @modes_executor.add_mode_executors @no_cache_executor
     end
 
-    describe 'engines_on?' do
-      specify { subject.engines_on?.should be_true }
-    end
-
-    its(:cached_rules)      { should be_empty }
     its(:non_cached_rules)  { should_not be_empty }
 
     describe 'rules contain only non-cached rules' do
-      specify { subject.rules.size.should == @abil.non_cached_rules.size }
-      specify { subject.rules.size.should == 2 }
+      specify { subject.rules.size.should == subject.non_cached_rules.size }
+      specify { subject.rules.size.should == 1 }
     end
   end
 end

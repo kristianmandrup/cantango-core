@@ -2,10 +2,6 @@ require 'rspec'
 require 'cantango/rspec'
 require 'cantango/core'
 
-def config_folder
-  File.dirname(__FILE__)+ "/fixtures/config/"
-end
-
 class Project
 end
 
