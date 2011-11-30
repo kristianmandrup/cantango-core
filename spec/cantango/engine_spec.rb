@@ -29,8 +29,8 @@ describe CanTango::Engine do
     end
   end
   
-  context '#initilize with ability and :cache mode' do
-    subject { CanTango::Engine.new @ability }
+  context '#initilize with ability and :no_cache mode' do
+    subject { CanTango::Engine.new @ability, :modes => [:no_cache] }
 
     specify do
       subject.modes.should_not be_empty
