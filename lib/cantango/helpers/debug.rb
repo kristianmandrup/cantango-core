@@ -1,9 +1,23 @@
 module CanTango
   module Helpers
     module Debug
+      attr_writer :do_debug, :debug_writer
+      
       # you can set another writer on CanTango.config.debug, fx to spec it!
       def debug msg
-        CanTango.config.debug.write msg if CanTango.debug?
+        if debug?
+          return debug_writer.write msg if debug_writer.respond_to? :write
+          return debug_writer.call(msg) if debug_writer.respond_to? :call
+          raise "No debug_writer set!"
+        end
+      end
+      
+      def debug?
+        @do_debug ||= CanTango.debug?
+      end
+      
+      def debug_writer
+        @debug_writer ||= CanTango.config.debug
       end
     end
   end

@@ -2,12 +2,12 @@ module CanTango
   class Engine
     include CanTango::Helpers::Debug
 
-    attr_reader :ability
+    attr_reader :ability, :options
 
     delegate :session, :user, :subject, :candidate, :cached?, :to => :ability
 
-    def initialize ability
-      @ability = ability
+    def initialize ability, options = {}
+      @ability, @options = [ability, options]
     end
 
     def execute!
@@ -18,22 +18,12 @@ module CanTango
       raise NotImplementedError
     end
 
-    protected
-
-    def valid_mode?
-      valid_cache_mode? || valid_no_cache_mode?
-    end
-
-    def valid_cache_mode?
-      modes.include?(:cache) && cached?
-    end
-
-    def valid_no_cache_mode?
-      modes.include?(:no_cache) && !cached?
+    def valid_mode? mode
+      modes.include? mode.to_sym
     end
 
     def modes
-      CanTango.config.engine(engine_name.to_sym).modes
+      @modes ||= options[:modes] || []
     end
   end
 end
