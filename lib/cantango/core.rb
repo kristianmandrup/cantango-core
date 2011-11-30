@@ -1,10 +1,3 @@
-require 'cantango/rails/railtie' if defined?(Rails)
-require 'cantango/rails/engine' if defined?(Rails)
-
-# essential cantango extensions
-# require 'cantango/config'
-# require 'cantango/api'
-
 require 'cancan'
 require 'active_support' # for Delegate module
 require 'active_support/core_ext/module/delegation'
@@ -15,7 +8,8 @@ require 'sugar-high/blank'
 require 'hashie'
 require 'sweetloader'
 
-AutoLoader.namespaces = {:CanTango => 'cantango'}
+SweetLoader.namespaces = {:CanTango => 'cantango'}
+SweetLoader.mode = :require
 
 module CanTango
   autoload_modules :Ability, :Engine, :Filter
