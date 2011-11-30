@@ -3,6 +3,22 @@ module CanTango
     module Debug
       attr_writer :do_debug, :debug_writer
       
+      def self.included base
+        base.extend ClassMethods
+      end
+      
+      module ClassMethods
+        attr_writer :do_debug, :debug_writer
+
+        def debug?
+          @do_debug ||= CanTango.debug?
+        end
+
+        def debug_writer
+          @debug_writer ||= CanTango.config.debug
+        end        
+      end
+      
       # you can set another writer on CanTango.config.debug, fx to spec it!
       def debug msg
         if debug?
@@ -13,11 +29,11 @@ module CanTango
       end
       
       def debug?
-        @do_debug ||= CanTango.debug?
+        @do_debug ||= self.class.debug?
       end
       
       def debug_writer
-        @debug_writer ||= CanTango.config.debug
+        @debug_writer ||= self.class.debug_writer
       end
     end
   end
