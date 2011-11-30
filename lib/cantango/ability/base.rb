@@ -17,6 +17,11 @@ module CanTango
         execute_engines! if engines_on?
       end
 
+      # overriden by Engine helper
+      def engines_on?
+        false
+      end
+
       def cached?
         false
       end
@@ -37,9 +42,8 @@ module CanTango
         @session = options[:session] || {} # seperate session cache for each type of user?
       end
 
+      # overriden by Masquerade helper
       def subject
-        return candidate.active_user if masquerade_user?
-        return candidate.active_account if masquerade_account?
         candidate
       end
 
@@ -47,9 +51,9 @@ module CanTango
         CanTango.config
       end
 
-      Helper.modules.each do |name|
-        include "CanTango::Ability::Helper::#{name.to_s.camelize}".constantize
-      end
+      # Helper.modules.each do |name|
+        # include "CanTango::Ability::Helper::#{name.to_s.camelize}".constantize
+      # end
     
       protected
 

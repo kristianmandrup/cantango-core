@@ -1,9 +1,5 @@
-module CanTango
-  module Rules
-    module Adaptor
-      module Mongoid
-        include module CanTango::Rules::Adaptor::Mongo
-      end
-    end
+module CanTango::Adaptor
+  module Mongoid
+    include module CanTango::Rules::Adaptor::Mongo
   end
 end

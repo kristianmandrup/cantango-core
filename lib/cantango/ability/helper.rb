@@ -2,7 +2,7 @@ module CanTango
   module Ability
     module Helper
       def self.modules
-        [:Account, :Cache, :Engine, :Masquerade, :Permit, :PermitStore, :Role, :RoleGroup, :User]
+        [:Account, :Engine, :User]
       end
       
       autoload_modules *modules

@@ -1,10 +1,6 @@
-module CanTango
-  module Rules
-    module Adaptor
-      module ActiveRecord
-        include CanTango::Rules::Adaptor::Relational
-      end
-    end
+module CanTango::Adaptor
+  module ActiveRecord
+    include CanTango::Rules::Adaptor::Relational
   end
 end
 

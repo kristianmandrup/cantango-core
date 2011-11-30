@@ -18,7 +18,7 @@ class User
 end
 
 describe CanTango::Ability::Helper::Account do
-  before
+  before do
     @user = User.new
     @account = MyAccount.new
     @user.account = @account
@@ -27,9 +27,11 @@ describe CanTango::Ability::Helper::Account do
   subject do
     CanTango::Ability::Base.new @user
   end
-  
-  describe 'Ability should have #account method' do
-    specify { subject.account.should == @account }
+
+  context 'Ability should have' do    
+    describe '#account method' do
+      specify { subject.account.should == @account }
+    end
   end
 end
 
