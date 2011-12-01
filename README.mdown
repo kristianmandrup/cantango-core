@@ -1,18 +1,10 @@
 # CanTango Core
 
-CanTango is an advanced Access Control (permissions) system for Rails 3. It:
+Core functionality for [CanTango](https://github.com/kristianmandrup/cantango)
 
-* extends "CanCan":http://github.com/ryanb/cancan and offers a more role oriented design
-* integrates with _role_ and _authentication_ systems in a non-intrusive manner
-* can _cache_ ability rules between requests for increased performance
-* can _store_ abilites in a permission store, including a YAML file, for easy administration
-* works well with multiple user accounts and sub applications
-* supports multiple "Devise":https://github.com/plataformatec/devise users
+## Status: Dec 1 2011
 
-*Will CanTango meet my Access Control (permission) requirements?*
-
-* "CanCan vs CanTango":https://github.com/kristianmandrup/cantango/wiki/CanCan-vs-CanTango
-* "CanTango overview":https://github.com/kristianmandrup/cantango/wiki
+The *core* CanTango component is now almost fully spec'ed and functional. Core should not dependencies to any other CanTango components but should stand on its own. All other CanTango components can rely on core for "core" functionality :)
 
 ## Installation
 
@@ -21,13 +13,13 @@ If you require ruby 1.8.7 support, please help patch it and make a pull request 
 
 ### Install in Ruby environment (or gem set)
 
-`gem install cantango`
+`gem install cantango-core`
 
 ## Install in Rails application
 
 Insert into Gemfile of your Rails application:
 
-`gem 'cantango'`
+`gem 'cantango-core'`
 
 If you want to live on the edge and use the latest master branch, use the `:git` option. To designate a specific branch, use the `:branch` option. You can also clone this project and reference your local copy (easier to debug/fix) by using the `:path` option (see *Bundler* documentation).
 
@@ -39,14 +31,24 @@ Run bundler in a terminal/console from the folder of your Gemfile (root folder o
 
 CanTango has now been split up into these logical components:
 
+* [Cantango core](https://github.com/kristianmandrup/cantango-core)
 * [Cantango config](https://github.com/kristianmandrup/cantango-config)
 * [Cantango cache](https://github.com/kristianmandrup/cantango-cache)
 * [Cantango model](https://github.com/kristianmandrup/cantango-model)
 * [Cantango masquerade](https://github.com/kristianmandrup/cantango-masquerade)
+* [Cantango roles](https://github.com/kristianmandrup/cantango-roles)
 
-* [Cantango Permits](https://github.com/kristianmandrup/cantango-permits)
+Engines (Ability executors):
+
+* [Permits](https://github.com/kristianmandrup/cantango-permits)
 * [Permit store](https://github.com/kristianmandrup/cantango-permit_store)
 * [Permissions](https://github.com/kristianmandrup/cantango-permissions)
+
+Cantango:
+
+* [Cantango](https://github.com/kristianmandrup/cantango)
+
+Currently the _cantango-1x_ branch
 
 ## Quickstart
 
