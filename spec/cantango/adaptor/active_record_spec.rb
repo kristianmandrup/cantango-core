@@ -1,9 +1,16 @@
 # This is used to wrap the CanCan ORM adapters, that enable convenient 
 # 'simple' queries using hashes similar to 'metawhere' gem
 require 'spec_helper'
+require 'migration_helper'
 
 class Poster < ActiveRecord::Base
+  belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
 end
+
+class User < ActiveRecord::Base
+  has_many :posters
+end
+
 
 module CanTango::Ability
   class Base
@@ -16,8 +23,10 @@ end
 
 describe CanTango::Adaptor::ActiveRecord do
   before do
-    @user = User.new 'admin', 'admin@mail.ru'
-    @stranger = User.new 'stranger', 'stranger@mail.ru'
+    migrate!
+
+    @user = User.create :name => 'admin', :email => 'admin@mail.ru'
+    @stranger = User.create :name => 'stranger', :email => 'strange@mail.ru'
     
     @poster = Poster.create :owner => @user
     @poster.owner = @user

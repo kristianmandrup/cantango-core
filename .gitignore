@@ -16,6 +16,7 @@ pkg
 
 .DS_Store
 */.DS_Store
+spec/db/development.sqlite3
 
 # Have editor/IDE/OS specific files you need to ignore? Consider using a global gitignore: 
 #

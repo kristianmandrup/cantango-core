@@ -1,6 +1,6 @@
 module CanTango::Adaptor
   module Mongo
-    #include CanTango::Rules::Adaptor::Generic
+    #include CanTango::daptor::Generic
     # using #in on Hash (Mongoid query)
     def include_condition attribute, candidate
       { attribute.to_sym.in => candidate.send(attribute) }

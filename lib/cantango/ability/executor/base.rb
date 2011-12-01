@@ -4,7 +4,9 @@ module CanTango
       class Base
         include CanTango::Helpers::Debug
 
-        delegate :session, :user, :subject, :candidate, :cached?, :to => :ability
+        # FIX - where is the ability???
+
+        delegate :session, :user, :subject, :candidate, :cached?, :can?, :cannot?, :to => :ability
 
         def execute!
           return if !valid?

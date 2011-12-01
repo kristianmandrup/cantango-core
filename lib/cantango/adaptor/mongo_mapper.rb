@@ -1,5 +1,5 @@
 module CanTango::Adaptor
   module MongoMapper
-    include module CanTango::Rules::Adaptor::Mongo
+    include CanTango::Adaptor::Mongo
   end
 end

@@ -1,5 +1,5 @@
 module CanTango::Adaptor
   module DataMapper
-    include CanTango::Rules::Adaptor::Relational
+    include CanTango::Adaptor::Relational
   end
 end

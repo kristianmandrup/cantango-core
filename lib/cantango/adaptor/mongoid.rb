@@ -1,5 +1,5 @@
 module CanTango::Adaptor
   module Mongoid
-    include module CanTango::Rules::Adaptor::Mongo
+    include CanTango::Adaptor::Mongo
   end
 end
