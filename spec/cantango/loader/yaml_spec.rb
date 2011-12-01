@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe CanTango::Loader::Yaml do
-  pending
+  pending 'Nothing much to spec here!'
 end

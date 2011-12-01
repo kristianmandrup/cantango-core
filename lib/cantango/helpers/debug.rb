@@ -11,11 +11,11 @@ module CanTango
         attr_writer :do_debug, :debug_writer
 
         def debug?
-          @do_debug ||= CanTango.debug?
+          @do_debug ||= false
         end
 
         def debug_writer
-          @debug_writer ||= CanTango.config.debug
+          @debug_writer ||= lambda {|m| puts m }
         end        
       end
       

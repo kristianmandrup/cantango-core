@@ -1,6 +1,8 @@
 module CanTango
   module Ability
     class Base
+      autoload_modules :Callbacks
+      
       include CanCan::Ability
 
       attr_reader :options, :candidate
@@ -10,11 +12,18 @@ module CanTango
       def initialize candidate, options = {}
         raise "Candidate must be something!" if !candidate
         @candidate, @options = candidate, options
+        execute!
+      end
+      
+      def execute!
+        within_callbacks do
+          clear_rules!
+          permit_rules
+        end        
+      end
 
-        clear_rules!
-        permit_rules
-
-        execute_engines! if engines_on?
+      def within_callbacks &block
+        yield
       end
 
       # overriden by Engine helper

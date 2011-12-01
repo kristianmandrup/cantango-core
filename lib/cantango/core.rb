@@ -13,8 +13,6 @@ SweetLoader.mode = :require
 
 module CanTango
   autoload_modules :Helpers, :Ability, :Engine, :Filter
-  autoload_modules :Loader, :Macros, :Model
+  autoload_modules :Loader, :Model
   autoload_modules :Scope
 end
-
-require 'cantango/macros'

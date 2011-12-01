@@ -14,19 +14,10 @@ module CanTango
       def yml_content
         YAML.load_file(file_name)
       rescue
-        raise "Couldn't load permissions file: #{file_name}. Either disable Permission engine or add this file."
+        raise "Couldn't YAML file: #{file_name}"
       end
-
+      
       module ClassMethods
-        protected
-
-        def config_file name
-          File.join(config_path, "#{name}.yml") if rails?
-        end
-
-        def config_path
-          CanTango.config.permissions.config_path
-        end
       end
     end
   end

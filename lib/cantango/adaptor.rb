@@ -25,10 +25,10 @@ module CanTango
 
       def orm_map
         {
-          :active_record => "ActiveRecord::Base",
-          :data_mapper => "DataMapper::Resource",
-          :mongoid => "Mongoid::Document",
-          :mongo_mapper => "MongoMapper::Document"
+          :active_record  => "ActiveRecord::Base",
+          :data_mapper    => "DataMapper::Resource",
+          :mongoid        => "Mongoid::Document",
+          :mongo_mapper   => "MongoMapper::Document"
         }
       end
     end
