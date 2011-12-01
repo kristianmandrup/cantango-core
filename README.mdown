@@ -27,9 +27,9 @@ Run bundler in a terminal/console from the folder of your Gemfile (root folder o
 
 `$ bundle`
 
-## CanTango components
+## CanTango core extensions
 
-CanTango has now been split up into these logical components:
+The following CanTango components extend core:
 
 * [Cantango core](https://github.com/kristianmandrup/cantango-core)
 * [Cantango config](https://github.com/kristianmandrup/cantango-config)
@@ -38,42 +38,20 @@ CanTango has now been split up into these logical components:
 * [Cantango masquerade](https://github.com/kristianmandrup/cantango-masquerade)
 * [Cantango roles](https://github.com/kristianmandrup/cantango-roles)
 
-Engines (Ability executors):
 
-* [Permits](https://github.com/kristianmandrup/cantango-permits)
-* [Permit store](https://github.com/kristianmandrup/cantango-permit_store)
-* [Permissions](https://github.com/kristianmandrup/cantango-permissions)
+## Extending core
 
-Cantango:
+To extend core, you should follow the CanTango extension conventions. We will demonstrate these conventions using the _-api_ extension as an example. The extension file structure should look like this:
 
-* [Cantango](https://github.com/kristianmandrup/cantango)
+```text
+/cantango
+  /api
+  /api_ext
+  api.rb
+  api_ext.rb_
+```
 
-Currently the _cantango-1x_ branch
-
-## Quickstart
-
-See the [Quickstart guide](https://github.com/kristianmandrup/cantango/wiki/Quickstart) in the wiki.
-
-For [devise](https://github.com/plataformatec/devise) integration, see [Quickstart CanTango with Devise](https://github.com/kristianmandrup/cantango/wiki/Quickstart-cantango-with-devise)
-
-The following scenarios demonstrate some of the problems CanTango can help solve in an elegant way
-
-* [Simple scenario](https://github.com/kristianmandrup/cantango/wiki/Simple-scenario)
-* [Complex scenario](https://github.com/kristianmandrup/cantango/wiki/Complex-scenario)
-
-### Generators
-
-Cantango comes with a set of [Generators](https://github.com/kristianmandrup/cantango/wiki/Generators) to get your app dancing...
-
-Install CanTango using
-
-* cantango:install
-
-`$ rails g cantango:install`
-
-### Configuration
-
-The CanTango [Configuration](https://github.com/kristianmandrup/cantango/wiki/Configuration) consists of a nice nested configuration DSL.
+The main API logic should go in the `cantango/api` folder. Extensions to core go into the `cantango/api_ext` folder. The extensions should use the same folder structure as core if possible.
 
 ## Contributing to cantango-core
  
