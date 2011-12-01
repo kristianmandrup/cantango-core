@@ -4,17 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{cantango-core}
-  s.version = "0.1.2"
+  s.name = "cantango-core"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Kristian Mandrup}, %q{Stanislaw Pankevich}]
-  s.date = %q{2011-11-25}
-  s.description = %q{Define your permission rules as role- or role group specific permits.
-Integrates well with multiple Devise user acounts.
-Includes rules caching.
-Store permissions in yaml file or key-value store}
-  s.email = %q{kmandrup@gmail.com, s.pankevich@gmail.com}
+  s.authors = ["Kristian Mandrup", "Stanislaw Pankevich"]
+  s.date = "2011-12-01"
+  s.description = "Define your permission rules as role- or role group specific permits.\nIntegrates well with multiple Devise user acounts.\nIncludes rules caching.\nStore permissions in yaml file or key-value store"
+  s.email = "kmandrup@gmail.com, s.pankevich@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.mdown"
@@ -31,18 +28,16 @@ Store permissions in yaml file or key-value store}
     "cantango-core.gemspec",
     "lib/cantango/ability.rb",
     "lib/cantango/ability/base.rb",
+    "lib/cantango/ability/base/callbacks.rb",
     "lib/cantango/ability/cache.rb",
     "lib/cantango/ability/cache/simple_key.rb",
     "lib/cantango/ability/executor.rb",
     "lib/cantango/ability/executor/base.rb",
-    "lib/cantango/ability/executor/cache_mode.rb",
     "lib/cantango/ability/executor/modes.rb",
     "lib/cantango/ability/executor/no_cache_mode.rb",
     "lib/cantango/ability/helper.rb",
     "lib/cantango/ability/helper/account.rb",
     "lib/cantango/ability/helper/engine.rb",
-    "lib/cantango/ability/helper/role.rb",
-    "lib/cantango/ability/helper/role_group.rb",
     "lib/cantango/ability/helper/user.rb",
     "lib/cantango/adaptor.rb",
     "lib/cantango/adaptor/active_record.rb",
@@ -63,9 +58,6 @@ Store permissions in yaml file or key-value store}
     "lib/cantango/helpers/debug.rb",
     "lib/cantango/loader.rb",
     "lib/cantango/loader/yaml.rb",
-    "lib/cantango/macros.rb",
-    "lib/cantango/macros/account.rb",
-    "lib/cantango/macros/user.rb",
     "lib/cantango/model.rb",
     "lib/cantango/model/guest.rb",
     "lib/cantango/rspec.rb",
@@ -79,41 +71,42 @@ Store permissions in yaml file or key-value store}
     "lib/generators/cantango/install/templates/categories.yml",
     "lib/generators/cantango/install/templates/permissions.yml",
     "spec/cantango/ability/base_spec.rb",
-    "spec/cantango/ability/cached_spec.rb",
-    "spec/cantango/ability/executor/base2.rb",
+    "spec/cantango/ability/cache/simple_key_spec.rb",
     "spec/cantango/ability/executor/base_spec.rb",
-    "spec/cantango/ability/executor/cache_mode_spec.rb",
+    "spec/cantango/ability/executor/custom_spec.rb",
     "spec/cantango/ability/executor/modes_spec.rb",
     "spec/cantango/ability/executor/no_cache_mode_spec.rb",
+    "spec/cantango/ability/helper/account_spec.rb",
+    "spec/cantango/ability/helper/engine_spec.rb",
+    "spec/cantango/ability/helper/user_spec.rb",
+    "spec/cantango/adaptor/active_record_spec.rb",
+    "spec/cantango/adaptor/data_mapper_spec.rb",
+    "spec/cantango/adaptor/mongo_mapper_spec.rb",
+    "spec/cantango/adaptor/mongoid_spec.rb",
     "spec/cantango/cancan/rule_spec.rb",
     "spec/cantango/core_spec.rb",
     "spec/cantango/engine_spec.rb",
     "spec/cantango/filter/base_spec.rb",
     "spec/cantango/helpers/debug_spec.rb",
     "spec/cantango/loader/yaml_spec.rb",
-    "spec/cantango/macros/account_spec.rb",
-    "spec/cantango/macros/user_spec.rb",
+    "spec/cantango/model/guest_spec.rb",
     "spec/cantango/rspec/be_allowed_to_spec.rb",
-    "spec/cantango/rules/adaptor/active_record_spec.rb",
-    "spec/cantango/rules/adaptor/data_mapper_spec.rb",
-    "spec/cantango/rules/adaptor/mongo_mapper_spec.rb",
-    "spec/cantango/rules/adaptor/mongoid_spec.rb",
-    "spec/cantango/rules/adaptor_spec.rb",
-    "spec/cantango/rules/dsl_spec.rb",
-    "spec/cantango/rules/relation_spec.rb",
-    "spec/cantango/rules/rule_class_spec.rb",
-    "spec/cantango/rules/scope_spec.rb",
-    "spec/cantango/rules_spec.rb",
     "spec/cantango/scope/ability_spec.rb",
     "spec/cantango_spec.rb",
+    "spec/fixtures/models.rb",
+    "spec/fixtures/models/account.rb",
+    "spec/fixtures/models/admin.rb",
+    "spec/fixtures/models/admin_account.rb",
+    "spec/fixtures/models/items.rb",
+    "spec/fixtures/models/user.rb",
     "spec/generators/cantango/install_generator_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/kristianmandrup/cantango}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.6}
-  s.summary = %q{CanCan extension with role oriented permission management and more}
+  s.homepage = "http://github.com/kristianmandrup/cantango"
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.10"
+  s.summary = "CanCan extension with role oriented permission management and more"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -122,7 +115,7 @@ Store permissions in yaml file or key-value store}
       s.add_runtime_dependency(%q<rails>, [">= 3.0.1"])
       s.add_runtime_dependency(%q<cancan>, [">= 1.4"])
       s.add_runtime_dependency(%q<sugar-high>, [">= 0.6.0"])
-      s.add_runtime_dependency(%q<sweetloader>, ["~> 0.1.0"])
+      s.add_runtime_dependency(%q<sweetloader>, ["~> 0.1.5"])
       s.add_runtime_dependency(%q<hashie>, [">= 0"])
       s.add_development_dependency(%q<rspec-rails>, [">= 2.6.1"])
       s.add_development_dependency(%q<forgery>, [">= 0.3"])
@@ -137,7 +130,7 @@ Store permissions in yaml file or key-value store}
       s.add_dependency(%q<rails>, [">= 3.0.1"])
       s.add_dependency(%q<cancan>, [">= 1.4"])
       s.add_dependency(%q<sugar-high>, [">= 0.6.0"])
-      s.add_dependency(%q<sweetloader>, ["~> 0.1.0"])
+      s.add_dependency(%q<sweetloader>, ["~> 0.1.5"])
       s.add_dependency(%q<hashie>, [">= 0"])
       s.add_dependency(%q<rspec-rails>, [">= 2.6.1"])
       s.add_dependency(%q<forgery>, [">= 0.3"])
@@ -153,7 +146,7 @@ Store permissions in yaml file or key-value store}
     s.add_dependency(%q<rails>, [">= 3.0.1"])
     s.add_dependency(%q<cancan>, [">= 1.4"])
     s.add_dependency(%q<sugar-high>, [">= 0.6.0"])
-    s.add_dependency(%q<sweetloader>, ["~> 0.1.0"])
+    s.add_dependency(%q<sweetloader>, ["~> 0.1.5"])
     s.add_dependency(%q<hashie>, [">= 0"])
     s.add_dependency(%q<rspec-rails>, [">= 2.6.1"])
     s.add_dependency(%q<forgery>, [">= 0.3"])
