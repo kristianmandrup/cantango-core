@@ -3,6 +3,10 @@ module CanTango
     class Yaml
       attr_accessor :file_name
 
+      def initialize file_name
+        @file_name = file_name
+      end
+
       def self.inherited subclass
         subclass.extend ClassMethods
       end
@@ -14,7 +18,7 @@ module CanTango
       def yml_content
         YAML.load_file(file_name)
       rescue
-        raise "Couldn't YAML file: #{file_name}"
+        raise "Couldn't load YAML file: #{file_name}"
       end
       
       module ClassMethods
