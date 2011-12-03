@@ -14,7 +14,7 @@ module CanTango::Ability
     end
 
     def clear_rules!
-      @rules = default_rules
+      rules = default_rules
     end
 
     def default_rules

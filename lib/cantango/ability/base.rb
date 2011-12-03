@@ -11,7 +11,6 @@ module CanTango
       def initialize candidate, options = {}
         raise "Candidate must be something!" if !candidate
         @candidate, @options = candidate, options
-        execute
       end
       
       def execute

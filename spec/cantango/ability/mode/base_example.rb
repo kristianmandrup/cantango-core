@@ -19,6 +19,10 @@ shared_examples_for CanTango::Ability::Mode::Base do
     before do
       subject.execute
     end
+    specify { subject.rules.should_not be_empty }
+    specify { subject.rules.size.should == 1 }
+    specify { subject.rules.first.should be_a CanCan::Rule }
+    
     specify { subject.should be_allowed_to(:read, Post) }
   end
 end

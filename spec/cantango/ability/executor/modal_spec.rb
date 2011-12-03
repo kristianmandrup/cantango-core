@@ -22,7 +22,7 @@ describe CanTango::Ability::Executor::Modal do
 
     its(:rules)  { should be_empty }
 
-    describe 'rules should be calculated' do
+    describe 'rules should be calculated on execute' do
       before do
         subject.execute
       end

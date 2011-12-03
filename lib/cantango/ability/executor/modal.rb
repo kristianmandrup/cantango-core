@@ -1,10 +1,10 @@
 module CanTango::Ability::Executor
-  class Modal < Base
+  class Modal < Base    
     def initialize candidate, modes, options = {}
       super candidate, options
+      modes = [modes].flatten if modes
       raise ArgumentError, "Modes must be a list of modes to execute!" if modes.blank?
-      @modes = [modes].flatten
-      execute
+      @modes = modes
     end
 
     def calculate_rules
@@ -15,14 +15,28 @@ module CanTango::Ability::Executor
       normalize_rules!
     end
 
+    def execute
+      clear_rules!
+      calculate_rules
+      return rules
+    rescue Exception => e
+      debug e.message
+      rules
+    end
+
     def finder
-      @finder ||= CanTango::Ability::Mode::Finder.new
+      @finder ||= CanTango::Ability::Mode::Finder.new self
     end
 
     protected
 
     def modal_rules mode
-      mode?(mode) ? finder.executor_for(mode).execute! : []
+      puts "modal rules: #{mode}"
+      mode?(mode) ? executor(mode).execute : []
+    end
+
+    def executor mode
+      @executor ||= finder.executor_for(mode)
     end
 
     def mode? mode

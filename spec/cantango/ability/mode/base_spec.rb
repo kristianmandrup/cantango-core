@@ -1,6 +1,6 @@
 require 'cantango/ability/mode/base_example'
 
-module CanTango::Ability
+module CanTango::Ability::Mode
   class Base
     def calculate_rules
       can :read, Post

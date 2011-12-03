@@ -1,7 +1,7 @@
 require 'cantango/ability/mode/base_example'
 
-module CanTango::Ability
-  class Base
+module CanTango::Ability::Mode
+  class NoCache
     def calculate_rules
       can :read, Post
     end
