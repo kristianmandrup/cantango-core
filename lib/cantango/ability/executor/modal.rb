@@ -1,7 +1,10 @@
 module CanTango::Ability::Executor
   class Modal < Base
     def initialize candidate, modes, options = {}
-      super
+      super candidate, options
+      raise ArgumentError, "Modes must be a list of modes to execute!" if modes.blank?
+      @modes = [modes].flatten
+      execute
     end
 
     def calculate_rules
@@ -19,7 +22,7 @@ module CanTango::Ability::Executor
     protected
 
     def modal_rules mode
-      mode?(mode) ? executor_for(mode).execute! : []
+      mode?(mode) ? finder.executor_for(mode).execute! : []
     end
 
     def mode? mode

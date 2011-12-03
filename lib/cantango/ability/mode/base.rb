@@ -4,10 +4,13 @@ module CanTango
       class Base
         include CanTango::Ability::Executor
 
+        attr_reader :ability
+
         delegate :session, :user, :subject, :candidate, :cached?, :can?, :cannot?, :to => :ability
 
         def initialize ability, options = {}
           @ability, @options = [ability, options]
+          execute
         end
 
         def within_callbacks

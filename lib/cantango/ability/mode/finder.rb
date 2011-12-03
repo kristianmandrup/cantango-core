@@ -5,7 +5,7 @@ module CanTango::Ability::Mode
     end
 
     def class_for mode
-      "CanTango::Ability::Executor::#{mode.to_s.camelize}Mode".constantize
+      "CanTango::Ability::Mode::#{mode.to_s.camelize}".constantize
     end
   end
 end

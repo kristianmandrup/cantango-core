@@ -29,11 +29,13 @@ module CanTango
       end
       
       def debug?
-        @do_debug ||= self.class.debug?
+        @do_debug ||= self.class.debug? if self.class.respond_to? :debug?
+        @do_debug ||= false
       end
       
       def debug_writer
-        @debug_writer ||= self.class.debug_writer
+        @debug_writer ||= self.class.debug_writer if self.class.respond_to? :debug_writer
+        @debug_writer ||= lambda {|m| puts m }
       end
     end
   end

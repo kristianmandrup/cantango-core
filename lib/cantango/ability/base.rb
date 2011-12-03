@@ -4,7 +4,7 @@ module CanTango
       include CanCan::Ability
       include CanTango::Ability::Rules
       
-      attr_reader :options, :candidate
+      attr_reader :candidate, :options
 
       # Equivalent to a CanCan Ability#initialize call
       # which executes all the permission logic
@@ -20,7 +20,7 @@ module CanTango
       end
       
       def session
-        @session = options[:session] || {} # seperate session cache for each type of user?
+        @session ||= options[:session] || {} # seperate session cache for each type of user?
       end
 
       # Helper.modules.each do |name|

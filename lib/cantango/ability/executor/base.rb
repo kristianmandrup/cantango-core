@@ -3,13 +3,24 @@ module CanTango
     module Executor
       class Base
         include CanTango::Ability::Executor
-        
-        def initialize candidate, modes, options = {}
-          raise ArgumentError, "Candidate must be something!" if !candidate
-          raise ArgumentError, "Modes must be a list of modes to execute!" if modes.blank?
 
-          @candidate, @modes, @options = [candidate, modes, options]
-          execute
+        attr_reader :candidate, :modes, :options
+
+        def initialize candidate, options = {}
+          raise ArgumentError, "Candidate must be something!" if !candidate
+          @candidate, @options = [candidate, options]
+        end
+
+        def rules
+          raise NotImplementedError
+        end
+        
+        def calculate_rules
+            raise NotImplementedError
+          end
+
+        def self.inherited(base)
+          base.send :include, CanTango::Helpers::Debug
         end
       end
     end

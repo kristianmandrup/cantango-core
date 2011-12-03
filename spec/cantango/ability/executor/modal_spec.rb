@@ -2,16 +2,8 @@ require 'spec_helper'
 require 'fixtures/models'
 
 module CanTango::Ability::Mode
-  class Cache
-    def permit_rules
-      can :read, Post
-    end
-  end
-end
-
-module CanTango::Ability::Mode
   class NoCache
-    def permit_rules
+    def calculate_rules
       can :write, Post
     end
   end
@@ -20,27 +12,24 @@ end
 describe CanTango::Ability::Executor::Modal do
   before do
     @user = User.new 'admin', 'admin@mail.ru'
+    @ability = CanTango::Ability::Base.new @user
   end
 
-  context 'Set execution modes  via :modes option'
+  context 'Set execution mode to :no_cache' do
     subject do 
-      modes_executor = CanTango::Ability::Executor::Modal.new @user
-      modes_executor.modes << :no_cache
-      modes_executor
+      CanTango::Ability::Executor::Modal.new @ability, :no_cache
     end
 
-    its(:modes)  { should include(:no_cache) }
-    its(:non_cached_rules)  { should_not be_empty }
+    its(:rules)  { should be_empty }
 
-    describe 'rules contain only non-cached rules' do
-      specify { subject.rules.size.should == subject.non_cached_rules.size }
+    describe 'rules should be calculated' do
+      before do
+        subject.execute
+      end
+      
+      specify { subject.rules.should_not be_empty }
       specify { subject.rules.size.should == 1 }
+      specify { subject.rules.first.should be_a CanCan::Rule }
     end
-  end
-
-  context 'Set execution modes  via :modes option'
-    subject { @CanTango::Ability::Executor::Modal.new @user, :modes => [:no_cache] }
-
-    its(:modes)  { should include(:no_cache) }
   end
 end
