@@ -4,14 +4,17 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "cantango-core"
-  s.version = "0.1.3"
+  s.name = %q{cantango-core}
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Kristian Mandrup", "Stanislaw Pankevich"]
-  s.date = "2011-12-01"
-  s.description = "Define your permission rules as role- or role group specific permits.\nIntegrates well with multiple Devise user acounts.\nIncludes rules caching.\nStore permissions in yaml file or key-value store"
-  s.email = "kmandrup@gmail.com, s.pankevich@gmail.com"
+  s.authors = [%q{Kristian Mandrup}, %q{Stanislaw Pankevich}]
+  s.date = %q{2011-12-03}
+  s.description = %q{Define your permission rules as role- or role group specific permits.
+Integrates well with multiple Devise user acounts.
+Includes rules caching.
+Store permissions in yaml file or key-value store}
+  s.email = %q{kmandrup@gmail.com, s.pankevich@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.mdown"
@@ -28,17 +31,21 @@ Gem::Specification.new do |s|
     "cantango-core.gemspec",
     "lib/cantango/ability.rb",
     "lib/cantango/ability/base.rb",
-    "lib/cantango/ability/base/callbacks.rb",
     "lib/cantango/ability/cache.rb",
     "lib/cantango/ability/cache/simple_key.rb",
+    "lib/cantango/ability/callbacks.rb",
     "lib/cantango/ability/executor.rb",
     "lib/cantango/ability/executor/base.rb",
-    "lib/cantango/ability/executor/modes.rb",
-    "lib/cantango/ability/executor/no_cache_mode.rb",
+    "lib/cantango/ability/executor/modal.rb",
     "lib/cantango/ability/helper.rb",
     "lib/cantango/ability/helper/account.rb",
     "lib/cantango/ability/helper/engine.rb",
     "lib/cantango/ability/helper/user.rb",
+    "lib/cantango/ability/mode.rb",
+    "lib/cantango/ability/mode/base.rb",
+    "lib/cantango/ability/mode/finder.rb",
+    "lib/cantango/ability/mode/no_cache.rb",
+    "lib/cantango/ability/rules.rb",
     "lib/cantango/adaptor.rb",
     "lib/cantango/adaptor/active_record.rb",
     "lib/cantango/adaptor/data_mapper.rb",
@@ -70,15 +77,22 @@ Gem::Specification.new do |s|
     "lib/generators/cantango/install/templates/cantango.rb",
     "lib/generators/cantango/install/templates/categories.yml",
     "lib/generators/cantango/install/templates/permissions.yml",
+    "spec/active_record/001_create_posters.rb",
+    "spec/active_record/002_create_users.rb",
     "spec/cantango/ability/base_spec.rb",
     "spec/cantango/ability/cache/simple_key_spec.rb",
+    "spec/cantango/ability/callbacks_spec.rb",
     "spec/cantango/ability/executor/base_spec.rb",
     "spec/cantango/ability/executor/custom_spec.rb",
-    "spec/cantango/ability/executor/modes_spec.rb",
-    "spec/cantango/ability/executor/no_cache_mode_spec.rb",
+    "spec/cantango/ability/executor/modal_spec.rb",
+    "spec/cantango/ability/executor_spec.rb",
     "spec/cantango/ability/helper/account_spec.rb",
     "spec/cantango/ability/helper/engine_spec.rb",
     "spec/cantango/ability/helper/user_spec.rb",
+    "spec/cantango/ability/mode/base_example.rb",
+    "spec/cantango/ability/mode/base_spec.rb",
+    "spec/cantango/ability/mode/no_cache_spec.rb",
+    "spec/cantango/ability/rules_spec.rb",
     "spec/cantango/adaptor/active_record_spec.rb",
     "spec/cantango/adaptor/data_mapper_spec.rb",
     "spec/cantango/adaptor/mongo_mapper_spec.rb",
@@ -93,20 +107,23 @@ Gem::Specification.new do |s|
     "spec/cantango/rspec/be_allowed_to_spec.rb",
     "spec/cantango/scope/ability_spec.rb",
     "spec/cantango_spec.rb",
+    "spec/db/database.yml",
     "spec/fixtures/models.rb",
     "spec/fixtures/models/account.rb",
     "spec/fixtures/models/admin.rb",
     "spec/fixtures/models/admin_account.rb",
     "spec/fixtures/models/items.rb",
     "spec/fixtures/models/user.rb",
+    "spec/fixtures/test.yml",
     "spec/generators/cantango/install_generator_spec.rb",
+    "spec/migration_helper.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = "http://github.com/kristianmandrup/cantango"
-  s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
-  s.summary = "CanCan extension with role oriented permission management and more"
+  s.homepage = %q{http://github.com/kristianmandrup/cantango}
+  s.licenses = [%q{MIT}]
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.6}
+  s.summary = %q{CanCan extension with role oriented permission management and more}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
