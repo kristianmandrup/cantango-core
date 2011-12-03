@@ -1,5 +1,9 @@
 module CanTango::Ability
   module Rules
+    def calculate_rules
+      rules
+    end
+
     def normalize_rules!
       rules.flatten!
       rules.compact!

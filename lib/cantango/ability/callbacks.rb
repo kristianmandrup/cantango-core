@@ -21,19 +21,16 @@ module CanTango::Ability
     end
     
     # should execute :after_execute callbacks
-    def after_execute
-      self.class.after_execute_callbacks.each {|callback| send(callback) }
-    end
-
-    # should execute :before_execute callbacks
-    def before_execute
-      self.class.before_execute_callbacks.each {|callback| send(callback) }
+    def handle_callbacks type
+      callbacks_method = "#{type}_execute_callbacks"
+      raise ArgumentError, "Not a valid callback type: #{type}" if !self.class.respond_to? callbacks_method
+      self.class.send(callbacks_method).each {|callback| send(callback) }
     end
 
     def within_callbacks &block
-      before_execute
+      handle_callbacks :before
       yield
-      after_execute
+      handle_callbacks :after
     end
   end
 end

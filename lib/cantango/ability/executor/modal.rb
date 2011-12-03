@@ -1,12 +1,7 @@
 module CanTango::Ability::Executor
   class Modal < Base
-
     def initialize candidate, modes, options = {}
-      raise ArgumentError, "Candidate must be something!" if !candidate
-      raise ArgumentError, "Modes must be a list of modes to execute!" if modes.blank?
-
-      @candidate, @modes, @options = [candidate, modes, options]
-      execute!
+      super
     end
 
     def calculate_rules
