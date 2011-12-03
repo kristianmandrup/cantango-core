@@ -1,30 +1,30 @@
 require 'spec_helper'
 require 'fixtures/models'
 
-module CanTango::Ability::Executor
-  class CacheMode
+module CanTango::Ability::Mode
+  class Cache
     def permit_rules
       can :read, Post
     end
   end
 end
 
-module CanTango::Ability::Executor
-  class NoCacheMode
+module CanTango::Ability::Mode
+  class NoCache
     def permit_rules
       can :write, Post
     end
   end
 end
 
-describe CanTango::Ability::Executor::Modes do
+describe CanTango::Ability::Executor::Modal do
   before do
     @user = User.new 'admin', 'admin@mail.ru'
   end
 
   context 'Set execution modes  via :modes option'
     subject do 
-      modes_executor = CanTango::Ability::Executor::Modes.new @user
+      modes_executor = CanTango::Ability::Executor::Modal.new @user
       modes_executor.modes << :no_cache
       modes_executor
     end
@@ -39,7 +39,7 @@ describe CanTango::Ability::Executor::Modes do
   end
 
   context 'Set execution modes  via :modes option'
-    subject { @CanTango::Ability::Executor::Modes.new @user, :modes => [:no_cache] }
+    subject { @CanTango::Ability::Executor::Modal.new @user, :modes => [:no_cache] }
 
     its(:modes)  { should include(:no_cache) }
   end

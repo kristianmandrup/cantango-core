@@ -4,6 +4,7 @@ module CanTango
       class SimpleKey
         attr_reader :user, :subject
 
+        # FIX: do we really need both user and subject? how about just candidate!
         def initialize user, subject = nil
           @user = user
           @subject = subject || user

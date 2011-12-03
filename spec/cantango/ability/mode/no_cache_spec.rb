@@ -1,22 +1,22 @@
 require 'spec_helper'
 require 'fixtures/models'
 
-module CanTango::Ability::Executor
-  class NoCacheMode
+module CanTango::Ability::Mode
+  class NoCache
     def permit_rules
       can :read, Post
     end
   end
 end
 
-describe CanTango::Ability::Executor::NoCacheMode do
+describe CanTango::Ability::Mode::NoCache do
   context 'no_cached mode only' do
     before do
       @user = User.new 'admin', 'admin@mail.ru'
       @ability = CanTango::Ability::Base.new @user
     end
 
-    subject { CanTango::Ability::Executor::NoCacheMode.new @ability }
+    subject { CanTango::Ability::Mode::NoCache.new @ability }
 
     its(:non_cached_rules)  { should be_empty }
 

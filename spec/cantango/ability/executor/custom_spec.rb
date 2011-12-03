@@ -16,14 +16,14 @@ class MyExecutor < CanTango::Ability::Executor::Base
     :my_exec
   end
 
-  def permit_rules
-    ability.permit_rules
+  def calculate_rules
+    ability.calculate_rules
   end
 end
 
 module CanTango::Ability
   class Base
-    def permit_rules
+    def calculate_rules
       can :edit, Project
     end
   end

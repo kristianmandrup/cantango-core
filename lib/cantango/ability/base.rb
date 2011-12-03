@@ -1,10 +1,12 @@
 module CanTango
   module Ability
     class Base
-      autoload_modules :Callbacks
-      
       include CanCan::Ability
 
+      include CanTango::Ability::Rules
+      include CanTango::Ability::Callbacks
+      include CanTango::Ability::Executor
+      
       attr_reader :options, :candidate
 
       # Equivalent to a CanCan Ability#initialize call
@@ -15,13 +17,6 @@ module CanTango
         execute!
       end
       
-      def execute!
-        within_callbacks do
-          clear_rules!
-          permit_rules
-        end        
-      end
-
       def within_callbacks &block
         yield
       end
@@ -33,18 +28,6 @@ module CanTango
 
       def cached?
         false
-      end
-
-      def rules
-        @rules
-      end
-
-      # developer can add rules here to be included in all subclasses!
-      def permit_rules
-      end
-
-      def clear_rules!
-        @rules ||= default_rules
       end
 
       def session
@@ -64,11 +47,7 @@ module CanTango
         # include "CanTango::Ability::Helper::#{name.to_s.camelize}".constantize
       # end
     
-      protected
 
-      def default_rules
-        []
-      end
     end
   end
 end
