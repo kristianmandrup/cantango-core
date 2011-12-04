@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cantango-core}
-  s.version = "0.1.4"
+  s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Kristian Mandrup}, %q{Stanislaw Pankevich}]
-  s.date = %q{2011-12-03}
+  s.date = %q{2011-12-04}
   s.description = %q{Define your permission rules as role- or role group specific permits.
 Integrates well with multiple Devise user acounts.
 Includes rules caching.
@@ -54,9 +54,9 @@ Store permissions in yaml file or key-value store}
     "lib/cantango/adaptor/mongo_mapper.rb",
     "lib/cantango/adaptor/mongoid.rb",
     "lib/cantango/adaptor/relational.rb",
-    "lib/cantango/cancan.rb",
-    "lib/cantango/cancan/rule.rb",
-    "lib/cantango/cancan/rule_class.rb",
+    "lib/cantango/can_can.rb",
+    "lib/cantango/can_can/rule.rb",
+    "lib/cantango/can_can/rule_class.rb",
     "lib/cantango/core.rb",
     "lib/cantango/engine.rb",
     "lib/cantango/filter.rb",
@@ -97,6 +97,7 @@ Store permissions in yaml file or key-value store}
     "spec/cantango/adaptor/data_mapper_spec.rb",
     "spec/cantango/adaptor/mongo_mapper_spec.rb",
     "spec/cantango/adaptor/mongoid_spec.rb",
+    "spec/cantango/cancan/rule_class_spec.rb",
     "spec/cantango/cancan/rule_spec.rb",
     "spec/cantango/core_spec.rb",
     "spec/cantango/engine_spec.rb",
