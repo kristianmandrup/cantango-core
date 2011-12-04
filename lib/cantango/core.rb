@@ -2,7 +2,7 @@ require 'cancan'
 require 'active_support' # for Delegate module
 require 'active_support/core_ext/module/delegation'
 
-require 'cantango/cancan/rule'
+require 'cantango/can_can/rule'
 require 'sugar-high/array'
 require 'sugar-high/blank'
 require 'hashie'
@@ -14,5 +14,5 @@ SweetLoader.mode = :require
 module CanTango
   autoload_modules :Helpers, :Ability, :Engine, :Filter
   autoload_modules :Loader, :Model, :Adaptor
-  autoload_modules :Scope
+  autoload_modules :Scope, :CanCan
 end
