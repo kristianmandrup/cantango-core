@@ -4,6 +4,7 @@ require 'fixtures/models'
 module CanTango::Ability::Mode
   class NoCache
     def calculate_rules
+      # puts "write Post"
       can :write, Post
     end
   end
@@ -27,6 +28,7 @@ describe CanTango::Ability::Executor::Modal do
       specify { subject.rules.should_not be_empty }
       specify { subject.rules.size.should == 1 }
       specify { subject.rules.first.should be_a CanCan::Rule }
+      specify { subject.can?(:write, Post).should be_true }
     end
   end
 end
