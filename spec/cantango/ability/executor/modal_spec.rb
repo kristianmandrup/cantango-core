@@ -16,6 +16,16 @@ describe CanTango::Ability::Executor::Modal do
     @ability = CanTango::Ability::Base.new @user
   end
 
+  context 'Set execution mode to :no_cache using option' do
+    subject do 
+      CanTango::Ability::Executor::Modal.new @ability, :modes => [:no_cache]
+    end
+
+    specify { subject.should respond_to :can? }
+    specify { subject.can?(:write, Post).should be_true }
+  end
+
+
   context 'Set execution mode to :no_cache' do
     subject do 
       CanTango::Ability::Executor::Modal.new @ability, :no_cache

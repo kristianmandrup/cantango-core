@@ -2,9 +2,7 @@ module CanTango::Ability::Executor
   class Modal < Base    
     def initialize candidate, modes, options = {}
       super candidate, options
-      modes = [modes].flatten if modes
-      raise ArgumentError, "Modes must be a list of modes to execute!" if modes.blank?
-      @modes = modes
+      extract_modes modes
       execute
     end
 
@@ -32,6 +30,18 @@ module CanTango::Ability::Executor
     end
 
     protected
+
+    def extract_modes modes
+      raise ArgumentError, "Modes must defined!" if !modes
+      modes = modes.kind_of?(Hash) ? modes_from_option(modes) : modes
+      modes = [modes].flatten
+      raise ArgumentError, "Modes must be a list of modes to execute!" if modes.blank?
+      @modes = modes
+    end
+
+    def modes_from_option options
+      options[:modes] || options[:mode]
+    end
 
     def modal_rules mode
       mode?(mode) ? executor(mode).execute : []
