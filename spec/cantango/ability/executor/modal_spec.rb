@@ -23,6 +23,7 @@ describe CanTango::Ability::Executor::Modal do
 
     specify { subject.should respond_to :can? }
     specify { subject.can?(:write, Post).should be_true }
+    specify { subject.can?(:publish, Post).should be_false }
   end
 
 
