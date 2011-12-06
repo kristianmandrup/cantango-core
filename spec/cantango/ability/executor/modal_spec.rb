@@ -20,13 +20,10 @@ describe CanTango::Ability::Executor::Modal do
       CanTango::Ability::Executor::Modal.new @ability, :no_cache
     end
 
-    its(:rules)  { should be_empty }
+    specify { subject.should respond_to :can? }
+    specify { subject.should respond_to :cannot? }
 
-    describe 'rules should be calculated on execute' do
-      before do
-        subject.execute
-      end
-      
+    describe 'rules should have been calculated' do      
       specify { subject.rules.should_not be_empty }
       specify { subject.rules.size.should == 1 }
       specify { subject.rules.first.should be_a CanCan::Rule }

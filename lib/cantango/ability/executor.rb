@@ -20,9 +20,10 @@ module CanTango
           clear_rules!
           calculate_rules
         end
-        return rules
       rescue Exception => e
         debug e.message
+      ensure
+        @executed = true
         rules
       end
     end

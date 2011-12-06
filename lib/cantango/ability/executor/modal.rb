@@ -5,6 +5,7 @@ module CanTango::Ability::Executor
       modes = [modes].flatten if modes
       raise ArgumentError, "Modes must be a list of modes to execute!" if modes.blank?
       @modes = modes
+      execute
     end
 
     def calculate_rules
@@ -16,11 +17,13 @@ module CanTango::Ability::Executor
     end
 
     def execute
+      return if executed?
       clear_rules!
       calculate_rules
-      return rules
     rescue Exception => e
-      debug e.message
+      debug e.message      
+    ensure
+      @executed = true
       rules
     end
 
@@ -31,7 +34,6 @@ module CanTango::Ability::Executor
     protected
 
     def modal_rules mode
-      puts "modal rules: #{mode}"
       mode?(mode) ? executor(mode).execute : []
     end
 

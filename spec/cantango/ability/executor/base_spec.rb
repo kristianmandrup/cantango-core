@@ -25,4 +25,10 @@ describe CanTango::Ability::Executor::Base do
       lambda { subject.execute }.should raise_error
     end
   end
+
+  describe 'should not have ability' do
+    specify do
+      lambda { subject.ability }.should raise_error
+    end
+  end
 end

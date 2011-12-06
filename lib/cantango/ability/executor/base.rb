@@ -1,21 +1,21 @@
 module CanTango::Ability::Executor
-  class Base
+  class Base < CanTango::Ability::Base
     include CanTango::Ability::Executor
     include CanTango::Ability::Callbacks
 
-    attr_reader :candidate, :modes, :options
+    attr_reader :candidate, :modes, :options, :executed
 
     def initialize candidate, options = {}
       raise ArgumentError, "Candidate must be something!" if !candidate
       @candidate, @options = [candidate, options]
     end
 
-    def rules
-      raise NotImplementedError
+    def executed?
+      @executed
     end
     
     def calculate_rules
-      raise NotImplementedError
+      super
     end
 
     def self.inherited(base)
