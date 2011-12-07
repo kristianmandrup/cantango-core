@@ -7,6 +7,17 @@ shared_examples_for CanTango::Ability::Mode::Base do
     @ability = CanTango::Ability::Base.new @user
   end
 
+  describe 'Can be built from a candidate' do
+    before do
+      @user = User.new 'admin', 'admin@mail.ru'
+    end
+    subject { mode_class.build @user }
+    
+    specify do
+      subject.ability.should be_a CanTango::Ability::Base
+    end
+  end
+
   subject { mode_class.new @ability }
 
   describe 'Does NOT execute on instantiation' do

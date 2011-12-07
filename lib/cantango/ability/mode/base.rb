@@ -5,6 +5,7 @@ module CanTango
       
       class Base
         include CanTango::Ability::Executor
+        include CanTango::Ability::Builder
 
         attr_reader :ability
 

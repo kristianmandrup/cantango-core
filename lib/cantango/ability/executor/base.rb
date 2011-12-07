@@ -2,6 +2,7 @@ module CanTango::Ability::Executor
   class Base < CanTango::Ability::Base
     include CanTango::Ability::Executor
     include CanTango::Ability::Callbacks
+    include CanTango::Ability::Builder
 
     attr_reader :ability, :modes, :options, :executed
 
@@ -15,25 +16,12 @@ module CanTango::Ability::Executor
       @options ||= options
     end
 
-    module ClassMethods
-      def build candidate, options = {}
-        self.new build_ability(candidate, options), options
-      end
-
-      def inherited(base)
-        base.send :include, CanTango::Helpers::Debug
-        base.send :include, CanTango::Ability::Executor
-        base.send :include, CanTango::Ability::Rules
-        base.send :include, CanTango::Ability::Callbacks
-      end
-
-      protected
-
-      def build_ability candidate, options = {}
-        CanTango::Ability::Base.new(candidate, options = {})
-      end
-    end
-    extend ClassMethods
+    # def self.inherited(base)
+    #   base.send :include, CanTango::Helpers::Debug
+    #   base.send :include, CanTango::Ability::Executor
+    #   base.send :include, CanTango::Ability::Rules
+    #   base.send :include, CanTango::Ability::Callbacks
+    # end
 
     def executed?
       @executed
