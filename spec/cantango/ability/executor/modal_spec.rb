@@ -4,7 +4,6 @@ require 'fixtures/models'
 module CanTango::Ability::Mode
   class NoCache
     def calculate_rules
-      # puts "write Post"
       can :write, Post
     end
   end
@@ -16,16 +15,33 @@ describe CanTango::Ability::Executor::Modal do
     @ability = CanTango::Ability::Base.new @user
   end
 
-  context 'Set execution mode to :no_cache using option' do
+  context 'Build using build method with candidate' do
     subject do 
-      CanTango::Ability::Executor::Modal.new @ability, :modes => [:no_cache]
+      CanTango::Ability::Executor::Modal.build @user, :modes => [:no_cache]
     end
 
+    specify { subject.ability.should be_a CanTango::Ability::Base }
+    specify { subject.candidate.should be_a User }
+    specify { subject.modes.should == [:no_cache] }
+    specify { subject.options[:modes].should == [:no_cache] }
     specify { subject.should respond_to :can? }
     specify { subject.can?(:write, Post).should be_true }
     specify { subject.can?(:publish, Post).should be_false }
   end
 
+  context 'Set execution mode to :no_cache using option' do
+    subject do 
+      CanTango::Ability::Executor::Modal.new @ability, :modes => [:no_cache]
+    end
+
+    specify { subject.ability.should be_a CanTango::Ability::Base }
+    specify { subject.candidate.should be_a User }
+    specify { subject.modes.should == [:no_cache] }
+    specify { subject.options[:modes].should == [:no_cache] }
+    specify { subject.should respond_to :can? }
+    specify { subject.can?(:write, Post).should be_true }
+    specify { subject.can?(:publish, Post).should be_false }
+  end
 
   context 'Set execution mode to :no_cache' do
     subject do 

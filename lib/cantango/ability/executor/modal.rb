@@ -1,10 +1,17 @@
 module CanTango::Ability::Executor
   class Modal < Base    
-    def initialize candidate, modes, options = {}
-      super candidate, options
+    def initialize ability, modes, options = {}
+      super ability, options
       extract_modes modes
       execute
     end
+
+    module ClassMethods
+      def build candidate, modes, options = {}
+        new build_ability(candidate, options), modes, options
+      end
+    end
+    extend ClassMethods
 
     def calculate_rules
       @rules = modes.inject([]) do |result, mode|
@@ -38,8 +45,9 @@ module CanTango::Ability::Executor
       raise ArgumentError, "Modes must be a list of modes to execute!" if modes.blank?
       @modes = modes
     end
-
+    
     def modes_from_option options
+      @options.merge! options
       options[:modes] || options[:mode]
     end
 

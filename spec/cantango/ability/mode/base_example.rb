@@ -9,7 +9,7 @@ shared_examples_for CanTango::Ability::Mode::Base do
 
   subject { mode_class.new @ability }
 
-  describe 'Does NOT execute on instantiation' do      
+  describe 'Does NOT execute on instantiation' do
     specify do
       subject.rules.should == []
     end
@@ -23,6 +23,7 @@ shared_examples_for CanTango::Ability::Mode::Base do
     specify { subject.rules.size.should == 1 }
     specify { subject.rules.first.should be_a CanCan::Rule }
     
+    specify { subject.can?(:read, Post).should be_true }
     specify { subject.should be_allowed_to(:read, Post) }
   end
 end
