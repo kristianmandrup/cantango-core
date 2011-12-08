@@ -18,6 +18,8 @@ describe CanTango::Ability::Base do
 
   subject { CanTango::Ability::Base.new @user }
 
+  specify { subject.candidate.should == @user }
+
   specify { subject.can?(:edit, Project).should be_true }
   specify { subject.cannot?(:publish, Project).should be_true }
 

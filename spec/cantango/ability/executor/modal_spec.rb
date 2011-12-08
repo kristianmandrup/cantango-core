@@ -21,7 +21,21 @@ describe CanTango::Ability::Executor::Modal do
     end
 
     specify { subject.ability.should be_a CanTango::Ability::Base }
+
     specify { subject.candidate.should be_a User }
+
+    describe 'candidate' do
+      it 'should be the user' do
+        subject.candidate.should == @user
+      end
+    end
+
+    describe 'ability candidate' do
+      it 'should be the user' do
+        subject.ability.candidate.should == @user
+      end
+    end
+
     specify { subject.modes.should == [:no_cache] }
     specify { subject.options[:modes].should == [:no_cache] }
     specify { subject.should respond_to :can? }
@@ -35,7 +49,28 @@ describe CanTango::Ability::Executor::Modal do
     end
 
     specify { subject.ability.should be_a CanTango::Ability::Base }
+
+    describe 'ability' do
+      it 'should be the ability passed in' do
+        subject.ability.should == @ability
+      end
+    end
+
     specify { subject.candidate.should be_a User }
+
+    describe 'candidate' do
+      it 'should be the user' do
+        subject.candidate.should == @user
+      end
+    end
+
+    describe 'ability candidate' do
+      it 'should be the user' do
+        subject.ability.candidate.should == @user
+      end
+    end
+
+    
     specify { subject.modes.should == [:no_cache] }
     specify { subject.options[:modes].should == [:no_cache] }
     specify { subject.should respond_to :can? }
@@ -51,7 +86,21 @@ describe CanTango::Ability::Executor::Modal do
     specify { subject.should respond_to :can? }
     specify { subject.should respond_to :cannot? }
 
-    describe 'rules should have been calculated' do      
+    describe 'ability' do
+      it 'should be the ability passed in' do
+        subject.ability.should == @ability
+      end
+    end
+
+    describe 'candidate' do
+      it 'should be the user' do
+        subject.candidate.should == @user
+      end
+    end
+
+    specify { subject.modes.should include(:no_cache) }
+
+    describe 'rules should have been calculated' do
       specify { subject.rules.should_not be_empty }
       specify { subject.rules.size.should == 1 }
       specify { subject.rules.first.should be_a CanCan::Rule }
