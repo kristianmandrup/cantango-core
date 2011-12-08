@@ -8,7 +8,7 @@ end
 
 module CanTango::Ability
   class Base
-    def permit_rules
+    def calculate_rules
       can :read, Chair, :owner => user
     end
   end

@@ -7,13 +7,7 @@ module CanTango
         @ability = ability
       end
 
-      def can? *args
-        ability.can? *args
-      end
-
-      def cannot? *args
-        ability.cannot? *args
-      end
+      delegate :can?, :cannot?, :candidate, :options, :modes, :session, :to => :ability
     end
   end
 end

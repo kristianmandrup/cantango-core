@@ -14,7 +14,7 @@ end
 
 module CanTango::Ability
   class Base
-    def permit_rules
+    def calculate_rules
       can :read, Poster, :owner => user
     end
   end

@@ -11,7 +11,7 @@ module CanTango::Ability
   class Base
     include CanTango::Ability::Helper::User
     
-    def permit_rules
+    def calculate_rules
       can :edit, Project
     end
   end
