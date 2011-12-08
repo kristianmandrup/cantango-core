@@ -5,24 +5,24 @@ group :default do
   gem 'cancan',           '>= 1.4'
   gem 'sugar-high',       '>= 0.6.0'
   gem 'sweetloader',      '~> 0.1.5'
-  gem 'hashie'  
+  gem 'hashie',           '~> 1.2'
 end
 
 group :test do
-  gem 'require_all', '~> 1.2.0'
+  gem 'require_all',    '~> 1.2.0'
 
 
-  gem 'cancan',           '>= 1.4'
+  gem 'cancan',         '>= 1.4'
   
   # Data
   gem 'database_cleaner'
   gem 'factory_girl'
 
   # Adapters
-  gem 'activerecord', '>= 3'
-  gem 'datamapper', '>= 1.1'
-  gem 'mongoid', '>= 2.2'
-  gem 'mongo_mapper', '>= 0.9'
+  gem 'activerecord',   '>= 3'
+  gem 'datamapper',     '>= 1.1'
+  gem 'mongoid',        '>= 2.2'
+  gem 'mongo_mapper',   '>= 0.9'
 
   # Specs
   gem 'spork'
@@ -47,8 +47,8 @@ group :test do
 end
 
 group :development, :test do
-  gem "rspec-rails",  '>= 2.6.1'  # needed in development to expose the rails generators
-  gem 'forgery',      '>= 0.3' # needed in development when using rake db:seed
+  gem "rspec-rails",    '>= 2.6.1'  # needed in development to expose the rails generators
+  gem 'forgery',        '>= 0.3' # needed in development when using rake db:seed
   gem 'factory_girl'
   gem 'sqlite3'
 end
