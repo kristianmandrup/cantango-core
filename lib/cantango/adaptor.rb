@@ -5,21 +5,27 @@ module CanTango
 
     # include adaptor depending on which ORM the object inherits from or includes
     def use_adaptor! base, object
-      orm_map.each_pair do |orm, const|
+      base.class.send :include, adaptor_for(object)
+    end
+
+    def adaptor_for object
+      "CanTango::Adaptor::#{orm_for(object).to_s.camelize}".constantize
+    end
+
+    def orm_for object
+      matching_orm(object) || :generic
+    end
+
+    def matching_orm object
+      orm = orm_map.select do |orm, const|
         begin
-          base.class.send :include, get_adapter(object, const.constantize, orm)
+          orm_const = const.constantize
+          object.kind_of?(orm_const)
         rescue
           next
         end
       end
-    end
-
-    def get_adapter object, adaptor_class, orm
-      object.kind_of?(adaptor_class) ? adaptor_for(orm) : adaptor_for(:generic)
-    end
-
-    def adaptor_for orm
-      "#{self.class}::#{orm.to_s.camelize}".constantize
+      orm.empty? ? nil : orm.keys.first
     end
 
     def orm_map

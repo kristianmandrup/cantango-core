@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   has_many :posters
 end
 
-
 module CanTango::Ability
   class Base
     def calculate_rules

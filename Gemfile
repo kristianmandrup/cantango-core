@@ -11,7 +11,6 @@ end
 group :test do
   gem 'require_all',    '~> 1.2.0'
 
-
   gem 'cancan',         '>= 1.4'
   
   # Data
