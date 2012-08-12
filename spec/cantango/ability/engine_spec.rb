@@ -1,16 +1,16 @@
 require 'spec_helper'
 require 'fixtures/models'
 
-describe CanTango::Engine do
+describe CanTango::Ability::Engine do
   before do
     @user = User.new 'admin', 'admin@mail.ru'
     @ability = CanTango::Ability::Base.new @user
   end
   
   context '#initilize with ability' do    
-    subject { CanTango::Engine.new @ability }
+    subject { CanTango::Ability::Engine.new @ability }
     
-    specify { subject.should be_a CanTango::Engine }
+    specify { subject.should be_a CanTango::Ability::Engine }
     
     specify do
       lambda { subject.execute! }.should raise_error
@@ -30,7 +30,7 @@ describe CanTango::Engine do
   end
   
   context '#initilize with ability and :no_cache mode' do
-    subject { CanTango::Engine.new @ability, :modes => [:no_cache] }
+    subject { CanTango::Ability::Engine.new @ability, :modes => [:no_cache] }
 
     specify do
       subject.modes.should_not be_empty

@@ -2,9 +2,16 @@
 
 Core functionality for [CanTango](https://github.com/kristianmandrup/cantango)
 
-## Status: Dec 1 2011
+Core should not have dependencies to any other CanTango components but should stand on its own. All other CanTango components can rely on core for "core" functionality :)
 
-The *core* CanTango component is now almost fully spec'ed and functional. Core should not dependencies to any other CanTango components but should stand on its own. All other CanTango components can rely on core for "core" functionality :)
+## Status: Aug 2012
+
+The *core* CanTango component is under development with specs:
+Current status:
+
+`71 examples, 22 failures`
+
+Please help out if you like the ideas behind this project ;)
 
 ## Installation
 
