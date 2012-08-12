@@ -16,18 +16,11 @@ module CanTango::Ability::Executor
       @options ||= options
     end
 
-    # def self.inherited(base)
-    #   base.send :include, CanTango::Helpers::Debug
-    #   base.send :include, CanTango::Ability::Executor
-    #   base.send :include, CanTango::Ability::Rules
-    #   base.send :include, CanTango::Ability::Callbacks
-    # end
-
     def executed?
       @executed
     end
     
-    def calculate_rules
+    def calc_rules
       super
     end
   end

@@ -16,16 +16,17 @@ module CanTango
       
       def execute
         clear_rules!
-        calculate_rules
+        calc_rules
       end
       
+      # seperate session cache for each type of user?
       def session
-        @session ||= options[:session] || {} # seperate session cache for each type of user?
+        @session ||= options[:session] || {} 
       end
 
-      # Helper.modules.each do |name|
-        # include "CanTango::Ability::Helper::#{name.to_s.camelize}".constantize
-      # end
+      def calc_rules
+        # raise NotImplementedError, "Must be implemented by subclass"
+      end
     end
   end
 end

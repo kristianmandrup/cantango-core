@@ -1,7 +1,7 @@
 module CanTango
   module Ability
     module Mode
-      autoload_modules :Base, :NoCache, :Finder
+      sweetload :Base, :NoCache, :Finder, :Extractor
     end
   end
 end

@@ -5,7 +5,7 @@ module CanTango
         [:Account, :Engine, :User]
       end
       
-      autoload_modules *modules
+      sweetload *modules
     end
   end
 end

@@ -1,10 +1,7 @@
 module CanTango::Ability
   module Callbacks
+    extend ActiveSupport::Concern
     include CanTango::Helpers::Debug
-
-    def self.included(base)
-      base.extend ClassMethods
-    end
 
     module ClassMethods
       [:after, :before].each do |type|

@@ -38,10 +38,8 @@ describe CanTango::Ability::Executor::Base do
 
     subject { MyExecutor.new @ability }
 
-    describe '#execute!' do
-      before do
-        subject.execute!
-      end
+    describe '#execute' do
+      before { subject.execute }
 
       specify { subject.ability.send(:rules).should_not be_empty }
     end
