@@ -1,11 +1,11 @@
-module CanTango::Ability::Executor
+module CanTango::Ability
   module Mode
     class Extractor   
       attr_reader :modes, :options
 
-      def initialize executor
-        @modes = executor.modes
-        @options = executor.options
+      def initialize modes, options
+        @modes    = modes
+        @options  = options
       end
 
       def extract 
@@ -17,12 +17,7 @@ module CanTango::Ability::Executor
       protected
       
       def calc_modes
-        @calc_modes ||= [modes_from_option || modes].flatten
-      end
-
-      def modes_from_option
-        @options.merge! modes if modes.kind_of?(Hash)
-        options[:modes] || options[:mode]
+        @calc_modes ||= [[options[:modes]] + modes].flatten.compact
       end
     end
   end

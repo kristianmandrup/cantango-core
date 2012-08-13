@@ -4,7 +4,6 @@ require 'fixtures/models'
 module CanTango::Ability
   class Base
     def calculate_rules
-      puts "calc"
       can :edit, Project
       cannot :publish, Project
     end

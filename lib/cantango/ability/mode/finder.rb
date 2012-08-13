@@ -1,11 +1,9 @@
 module CanTango::Ability::Mode
   class Finder
-    attr_reader :executor
+    attr_reader :candidate, :ability, :options
 
-    delegate :candidate, :ability, :options, :to => :executor
-
-    def initialize executor
-      @executor = executor
+    def initialize candidate, ability, options = {}
+      @candidate, @ability, @options = [candidate, ability, options]
     end
 
     def executor_for mode

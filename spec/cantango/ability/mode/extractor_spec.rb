@@ -1,7 +1,8 @@
-describe CanTango::Ability::Executor::Mode::Extractor do
-  subject { CanTango::Ability::Executor::Mode::Extractor.new executor }
+require 'spec_helper'
+require 'fixtures/models'
 
-  let(:executor) { CanTango::Ability::Executor::Modal.new ability, modes, options }
+describe CanTango::Ability::Mode::Extractor do
+  subject { CanTango::Ability::Mode::Extractor.new modes, options }
 
   let(:ability) { CanTango::Ability::Base.new user }
   let(:user)    { User.new 'admin', 'admin@mail.ru' }
@@ -13,8 +14,8 @@ describe CanTango::Ability::Executor::Mode::Extractor do
 
   context 'basic config' do
     describe '.init' do
-      its(:ability) { should == ability }
-      its(:options) { should == {:as => :lucky} }
+      its(:modes)   { should == modes }
+      its(:options) { should == options }
     end
 
     describe '.extract' do
@@ -28,8 +29,8 @@ describe CanTango::Ability::Executor::Mode::Extractor do
     end
 
     describe '.init' do
-      its(:ability) { should == ability }
-      its(:options) { should == {:as => :lucky, :modes => [:no_cache]} }
+      its(:modes)   { should == modes }
+      its(:options) { should == options }
     end
 
     describe '.extract' do

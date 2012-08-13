@@ -1,14 +1,6 @@
 require 'spec_helper'
 require 'fixtures/models'
 
-module CanTango::Ability::Executor
-  class Base
-    def calc_rules
-      can :write, Post
-    end
-  end
-end
-
 describe CanTango::Ability::Executor::Base do
   subject { CanTango::Ability::Executor::Base.new ability }
 
@@ -25,8 +17,7 @@ describe CanTango::Ability::Executor::Base do
     its(:ability) { should be_a CanTango::Ability::Base }
 
     specify do
-      puts subject.ability.inspect
-      subject.ability.rules.should_not be_empty
+      subject.ability.rules.should be_empty
     end
   end
 end

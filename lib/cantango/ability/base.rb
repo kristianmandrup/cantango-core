@@ -23,10 +23,6 @@ module CanTango
       def session
         @session ||= options[:session] || {} 
       end
-
-      def calc_rules
-        # raise NotImplementedError, "Must be implemented by subclass"
-      end
     end
   end
 end

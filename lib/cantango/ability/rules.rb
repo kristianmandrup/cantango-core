@@ -1,6 +1,6 @@
 module CanTango::Ability
   module Rules
-    def calculate_rules
+    def calc_rules
       rules
     end
 

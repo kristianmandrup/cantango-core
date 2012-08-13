@@ -1,12 +1,10 @@
 module CanTango::Ability::Executor
-  class Modal < Base   
-    sweetload :Extractor
-
+  class Modal < Base
     attr_writer :finder, :extractor
 
     def initialize ability, modes, options = {}
       super ability, options
-      @modes = extractor(modes, options).extract
+      @modes = extractor.extract
 
       @finder     = options[:finder] if options[:finder]
       @extractor  = options[:extractor] if options[:extractor]
@@ -28,11 +26,11 @@ module CanTango::Ability::Executor
     end
 
     def finder
-      @finder ||= CanTango::Ability::Mode::Finder.new self
+      @finder ||= CanTango::Ability::Mode::Finder.new candidate, ability, options
     end
 
     def extractor
-      @extractor ||= CanTango::Ability::Mode::Extractor.new self
+      @extractor ||= CanTango::Ability::Mode::Extractor.new modes, options
     end
 
     def executor mode
